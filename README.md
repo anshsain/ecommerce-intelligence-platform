@@ -22,10 +22,7 @@ This is a real problem every e-commerce company from Flipkart to a D2C startup a
 
 ## 🏗️ Project Architecture
 Raw Excel (1M+ rows)
-
-│
 ▼
-
 Data Cleaning & Engineering (Python · Pandas · Google Colab)
 │
 ▼
