@@ -1,8 +1,10 @@
 # 🛒 E-Commerce Customer Intelligence Platform
 
-![Python](https://img.shields.io/badge/Python-3.10-blue?style=flat&logo=python)
+![Python](https://img.shields.io/badge/Python-3.11-blue?style=flat&logo=python)
 ![SQL](https://img.shields.io/badge/SQL-MSSQL-red?style=flat&logo=microsoftsqlserver)
 ![XGBoost](https://img.shields.io/badge/ML-XGBoost-orange?style=flat)
+![HuggingFace](https://img.shields.io/badge/NLP-HuggingFace-yellow?style=flat&logo=huggingface)
+![Docker](https://img.shields.io/badge/Docker-Containerised-blue?style=flat&logo=docker)
 ![Streamlit](https://img.shields.io/badge/App-Streamlit-ff4b4b?style=flat&logo=streamlit)
 ![Status](https://img.shields.io/badge/Status-Live-brightgreen?style=flat)
 
