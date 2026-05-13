@@ -22,22 +22,28 @@ This is a real problem every e-commerce company from Flipkart to a D2C startup a
 
 ## 🏗️ Project Architecture
 Raw Excel (1M+ rows)
+
 ▼
+
 Data Cleaning & Engineering (Python · Pandas · Google Colab)
-│
+
 ▼
+
 SQL Analytical Layer (MSSQL · SSMS)
 6 Production Views — Revenue Trends, CLV, RFM, Cohorts, Leakage, Products
-│
+
 ▼
+
 Machine Learning (Scikit-learn · XGBoost · SHAP)
 Churn Prediction · RFM Segmentation · Recommendation Engine
-│
+
 ▼
+
 NLP Analysis (TextBlob)
 Product Sentiment · Cancellation Keyword Analysis
-│
+
 ▼
+
 Live Streamlit App (Deployed on Streamlit Cloud)
 5 Interactive Tabs — Overview · Churn · Segments · Recommendations · Insights
 
