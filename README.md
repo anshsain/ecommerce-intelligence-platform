@@ -12,7 +12,7 @@ An end-to-end data science project built on the **Online Retail II (UCI) dataset
 
 ---
 
-## 📌 Business Problem
+## Business Problem
 
 > *"Can we identify which customers are about to churn, understand what drives their purchasing behaviour, and recommend products — so a business can act before it loses revenue?"*
 
@@ -20,7 +20,7 @@ This is a real problem every e-commerce company from Flipkart to a D2C startup a
 
 ---
 
-## 🏗️ Project Architecture
+## Project Architecture
 Raw Excel (1M+ rows)
 
 ▼
@@ -49,7 +49,7 @@ Live Streamlit App (Deployed on Streamlit Cloud)
 
 ---
 
-## 📊 Layer 1 — Data Engineering
+## Layer 1 — Data Engineering
 
 - Combined two Excel sheets (2009–2010 and 2010–2011) into a single 1,067,371 row dataframe
 - Handled real-world mess: duplicate entries, negative quantities, zero prices, missing CustomerIDs (22% null), inconsistent formats
@@ -60,7 +60,7 @@ Live Streamlit App (Deployed on Streamlit Cloud)
 
 ---
 
-## 🗄️ Layer 2 — SQL Analytical Layer
+## Layer 2 — SQL Analytical Layer
 
 Built 6 production-grade views in MSSQL:
 
@@ -77,7 +77,7 @@ All views use window functions, CTEs, aggregations, and date functions — not a
 
 ---
 
-## 🤖 Layer 3 — Machine Learning
+## Layer 3 — Machine Learning
 
 ### Model A — Customer Churn Prediction
 - **Definition:** Customer inactive for 90+ days = churned
@@ -111,7 +111,7 @@ All views use window functions, CTEs, aggregations, and date functions — not a
 
 ---
 
-## 💬 Layer 4 — NLP Analysis
+## Layer 4 — NLP Analysis
 
 - **Sentiment analysis** on 5,000+ product descriptions using TextBlob
 - **Cancellation keyword analysis** — "Retrospot" (1,400), "Cake" (1,227), "Glass" (1,074) dominate cancelled orders — fragile/decorative categories at highest risk
@@ -119,7 +119,7 @@ All views use window functions, CTEs, aggregations, and date functions — not a
 
 ---
 
-## 🚀 Layer 5 — Streamlit App
+## Layer 5 — Streamlit App
 
 5 interactive tabs deployed on Streamlit Cloud:
 
@@ -133,7 +133,7 @@ All views use window functions, CTEs, aggregations, and date functions — not a
 
 ---
 
-## 📈 Key Business Insights
+## Key Business Insights
 1. **4 VIP Whale accounts** average £436K spend each — losing one = £436K revenue impact
 2. **November seasonal spike** — £1.17M in Nov 2010, nearly double any other month. Q4 drives ~35% of annual revenue
 3. **£916K revenue leakage** from UK cancellations across 6,959 orders
@@ -145,7 +145,7 @@ All views use window functions, CTEs, aggregations, and date functions — not a
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 | Category | Tools |
 |---|---|
 | Data Processing | Python, Pandas, NumPy, Google Colab |
@@ -159,16 +159,27 @@ All views use window functions, CTEs, aggregations, and date functions — not a
 
 ## 📁 Repository Structure
 ecommerce-intelligence-platform/
+
 │
+
 ├── app.py                    ← Streamlit application (5 tabs)
+
 ├── requirements.txt          ← Python dependencies
+
 ├── retail_clean.csv.gz       ← Cleaned transaction data (compressed)
+
 ├── rfm_segmented.csv         ← RFM scores + cluster labels
+
 ├── purchase_matrix.csv       ← Customer-product matrix (top 500 products)
+
 ├── xgb_model.pkl             ← Trained XGBoost churn model
+
 ├── scaler.pkl                ← StandardScaler for feature preprocessing
+
 │
+
 └── .streamlit/
+
 └── config.toml           ← Dark theme configuration
 
 ---
