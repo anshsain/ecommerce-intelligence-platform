@@ -28,6 +28,7 @@ Raw Excel (1M+ rows)
 ▼
 
 Data Cleaning & Engineering (Python · Pandas · Google Colab)
+Handled nulls, duplicates, cancellations, and type errors
 
 ▼
 
@@ -41,8 +42,12 @@ Churn Prediction · RFM Segmentation · Recommendation Engine
 
 ▼
 
-NLP Analysis (TextBlob)
-Product Sentiment · Cancellation Keyword Analysis
+Containerised with Docker
+
+▼
+
+NLP — HuggingFace RoBERTa Transformer
+Product Sentiment Analysis · Cancellation Keyword Analysis
 
 ▼
 
@@ -113,11 +118,34 @@ All views use window functions, CTEs, aggregations, and date functions — not a
 
 ---
 
-## Layer 4 — NLP Analysis
+## 💬 Layer 4 — NLP with HuggingFace Transformers
 
-- **Sentiment analysis** on 5,000+ product descriptions using TextBlob
-- **Cancellation keyword analysis** — "Retrospot" (1,400), "Cake" (1,227), "Glass" (1,074) dominate cancelled orders — fragile/decorative categories at highest risk
-- 78% of descriptions are neutral (wholesale catalogue), gifting products score the highest positive polarity
+- Replaced rule-based TextBlob with **fine-tuned RoBERTa** (`cardiffnlp/twitter-roberta-base-sentiment`)
+- Ran inference on **5,331 unique product descriptions** in batches
+- Model correctly detects informal language — "W/SUCK", "I AM SO POORLY", "YOU'RE CONFUSING ME" all flagged negative with 90%+ confidence — something TextBlob missed entirely
+- **Cancellation keyword analysis** — "Retrospot" (1,400), "Cake" (1,227), "Glass" (1,074) dominate cancelled orders
+
+| Sentiment | Products | Example |
+|---|---|---|
+| Positive | 140 | I LOVE LONDON MINI BACKPACK (0.988) |
+| Neutral | 5,133 | REGENCY CAKESTAND 3 TIER (0.826) |
+| Negative | 58 | YOU'RE CONFUSING ME METAL SIGN (0.930) |
+
+---
+
+## 🐳 Docker
+
+Application is fully containerised for platform-independent deployment:
+
+```bash
+# Build
+docker build -t ecommerce-intelligence.
+
+# Run
+docker run -p 8501:8501 ecommerce-intelligence
+```
+
+Then open `http://localhost:8501` in your browser.
 
 ---
 
@@ -167,6 +195,10 @@ ecommerce-intelligence-platform/
 ├── app.py                    ← Streamlit application (5 tabs)
 
 ├── requirements.txt          ← Python dependencies
+
+├── Dockerfile                ← Container configuration
+
+├── .dockerignore             ← Docker build exclusions
 
 ├── retail_clean.csv.gz       ← Cleaned transaction data (compressed)
 
