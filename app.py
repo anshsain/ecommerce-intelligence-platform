@@ -446,6 +446,69 @@ elif page == "💡 Key Insights":
     st.markdown("Data-driven findings from 2 years of transaction analysis.")
     st.markdown("---")
 
+    # ── HuggingFace Sentiment Section
+    st.markdown('<div class="section-header"><b>🤗 Product Sentiment Analysis — HuggingFace RoBERTa</b></div>',
+                unsafe_allow_html=True)
+    st.caption("Model: cardiffnlp/twitter-roberta-base-sentiment | 5,331 unique products analysed")
+
+    @st.cache_data
+    def load_sentiment():
+        return pd.read_csv('product_sentiment.csv')
+
+    sentiment_df = load_sentiment()
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        sent_counts = sentiment_df['Sentiment'].value_counts().reset_index()
+        sent_counts.columns = ['Sentiment', 'Count']
+        colors = {'Positive': '#2ecc71', 'Neutral': '#3498db', 'Negative': '#e74c3c'}
+        fig = px.pie(sent_counts, values='Count', names='Sentiment',
+                     color='Sentiment',
+                     color_discrete_map=colors,
+                     hole=0.4,
+                     title='Sentiment Distribution')
+        fig.update_layout(
+            paper_bgcolor='#1A1D2E', font_color='#FAFAFA',
+            margin=dict(l=10, r=10, t=40, b=10)
+        )
+        st.plotly_chart(fig, use_container_width=True)
+
+    with col2:
+        st.markdown("**🟢 Most Positive Products**")
+        top_pos = (sentiment_df[sentiment_df['Sentiment'] == 'Positive']
+                   .nlargest(5, 'Confidence')[['Description', 'Confidence']])
+        for _, row in top_pos.iterrows():
+            st.markdown(f"🟢 `{str(row['Description'])[:45]}` — **{row['Confidence']:.3f}**")
+
+        st.markdown("<br>", unsafe_allow_html=True)
+
+        st.markdown("**🔴 Most Negative Products**")
+        top_neg = (sentiment_df[sentiment_df['Sentiment'] == 'Negative']
+                   .nlargest(5, 'Confidence')[['Description', 'Confidence']])
+        for _, row in top_neg.iterrows():
+            st.markdown(f"🔴 `{str(row['Description'])[:45]}` — **{row['Confidence']:.3f}**")
+
+    # ── Confidence distribution
+    st.markdown('<div class="section-header"><b>Model Confidence Distribution</b></div>',
+                unsafe_allow_html=True)
+    fig2 = px.histogram(sentiment_df, x='Confidence', color='Sentiment',
+                        color_discrete_map=colors,
+                        nbins=50, barmode='overlay', opacity=0.7,
+                        title='Confidence Score Distribution by Sentiment')
+    fig2.update_layout(
+        plot_bgcolor='#1A1D2E', paper_bgcolor='#1A1D2E',
+        font_color='#FAFAFA',
+        margin=dict(l=10, r=10, t=40, b=10)
+    )
+    st.plotly_chart(fig2, use_container_width=True)
+
+    st.markdown("---")
+
+    # ── Key Business Insight Cards
+    st.markdown('<div class="section-header"><b>📌 Key Business Insights</b></div>',
+                unsafe_allow_html=True)
+
     insight_data = [
         ("🐋", "VIP Whales",
          "4 customers account for disproportionate revenue averaging £436K each. "
