@@ -16,7 +16,7 @@ An end-to-end data science project built on the **Online Retail II (UCI) dataset
 
 > *"Can we identify which customers are about to churn, understand what drives their purchasing behaviour, and recommend products — so a business can act before it loses revenue?"*
 
-This is a real problem every e-commerce company from Flipkart to a D2C startup actively solves. This project replicates that analytics pipeline end-to-end.
+This is a real problem every e-commerce company, from Flipkart to a D2C startup, actively solves. This project replicates that analytics pipeline end-to-end.
 
 ---
 
@@ -115,7 +115,7 @@ All views use window functions, CTEs, aggregations, and date functions — not a
 
 - **Sentiment analysis** on 5,000+ product descriptions using TextBlob
 - **Cancellation keyword analysis** — "Retrospot" (1,400), "Cake" (1,227), "Glass" (1,074) dominate cancelled orders — fragile/decorative categories at highest risk
-- 78% of descriptions are neutral (wholesale catalogue), gifting products score highest positive polarity
+- 78% of descriptions are neutral (wholesale catalogue), gifting products score the highest positive polarity
 
 ---
 
@@ -180,7 +180,7 @@ ecommerce-intelligence-platform/
 
 └── .streamlit/
 
-└── config.toml           ← Dark theme configuration
+  └── config.toml           ← Dark theme configuration
 
 ---
 
