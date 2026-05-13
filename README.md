@@ -158,8 +158,8 @@ Then open `http://localhost:8501` in your browser.
 | 📊 Overview | KPI cards, monthly revenue trend, top countries, top products |
 | 🔮 Churn Predictor | Input customer params → gauge chart → churn probability + recommended actions |
 | 👥 Customer Segments | Segment KPIs, pie chart, RFM scatter, segment explorer with drill-down |
-| 🎯 Recommendations | Select customer → see purchase history + top 5 recommended products |
-| 💡 Key Insights | 8 data-driven business findings from the analysis |
+| 🎯 Recommendations | Select customer → see purchase history + top N recommended products |
+| 💡 Key Insights | HuggingFace sentiment analysis + 8 data-driven business findings |
 
 ---
 
@@ -181,7 +181,7 @@ Then open `http://localhost:8501` in your browser.
 | Data Processing | Python, Pandas, NumPy, Google Colab |
 | Database | Microsoft SQL Server (MSSQL), SSMS |
 | Machine Learning | Scikit-learn, XGBoost, SHAP, K-Means |
-| NLP | TextBlob |
+| NLP / AI | HuggingFace Transformers, RoBERTa |
 | Visualisation | Plotly, Matplotlib, Seaborn |
 | Deployment | Streamlit, Streamlit Cloud, GitHub |
 
