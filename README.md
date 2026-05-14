@@ -180,10 +180,10 @@ Then open `http://localhost:8501` in your browser.
 |---|---|
 | Data Processing | Python, Pandas, NumPy, Google Colab |
 | Database | Microsoft SQL Server (MSSQL), SSMS |
-| Machine Learning | Scikit-learn, XGBoost, SHAP, K-Means |
+| Machine Learning | Scikit-learn, XGBoost, SHAP, K-Means, Cosine Similarity |
 | NLP / AI | HuggingFace Transformers, RoBERTa |
 | Visualisation | Plotly, Matplotlib, Seaborn |
-| Deployment | Streamlit, Streamlit Cloud, GitHub |
+| Deployment | Docker, Streamlit, Streamlit Cloud, GitHub |
 
 ---
 
