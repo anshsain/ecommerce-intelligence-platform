@@ -58,7 +58,7 @@ Live Streamlit App (Deployed on Streamlit Cloud)
 
 ## Layer 1 — Data Engineering
 
-- Combined two Excel sheets (2009–2010 and 2010–2011) into a single 1,067,371 row dataframe
+- Took an online retail dataset with 1,067,371 rows 
 - Handled real-world mess: duplicate entries, negative quantities, zero prices, missing CustomerIDs (22% null), inconsistent formats
 - Flagged 18,744 cancelled orders for downstream revenue leakage analysis rather than dropping them
 - Engineered `TotalAmount`, `IsCancelled` columns
