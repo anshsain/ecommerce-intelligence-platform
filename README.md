@@ -89,19 +89,21 @@ All views use window functions, CTEs, aggregations, and date functions — not a
 ### Model A — Customer Churn Prediction
 - **Definition:** Customer inactive for 90+ days = churned
 - **Features:** Frequency, Monetary, F_Score, M_Score, TotalOrders, TotalItemsBought, AvgOrderValue, CustomerLifespanDays
+- **Class balance:** Dataset was naturally balanced (50.9% churned vs 49.1% not churned) — no SMOTE required. Pipeline includes SMOTE-ready structure for imbalanced datasets
 - **Pipeline:** Logistic Regression → Random Forest → XGBoost
 - **Caught and fixed data leakage** — Recency directly encodes churn label, removed from features
 - **Result:** XGBoost AUC-ROC **0.863**, Churn Recall **0.81**
 - **SHAP explainability** — F_Score identified as 5x more predictive than monetary value
 
-| Model | AUC-ROC | Accuracy |
-|---|---|---|
-| Logistic Regression | 0.786 | 72% |
-| Random Forest | 0.864 | 76% |
-| **XGBoost** | **0.863** | **76%** |
+| Model | AUC-ROC | Accuracy | Precision | Churn Recall |
+|---|---|---|---|---|
+| Logistic Regression | 0.786 | 72% | 0.713 | 74% |
+| Random Forest | 0.864 | 76% | 0.761 | 77% |
+| **XGBoost ✓** | **0.863** | **76%** | **0.748** | **81%** |
 
 ### Model B — RFM Customer Segmentation
 - K-Means clustering with elbow method → optimal **K=4**
+- **Silhouette Score (K=4): 0.5909** — confirms strong, well-separated clusters (>0.5 threshold)
 - Segments discovered from data (not assumed):
 
 | Segment | Customers | Avg Recency | Avg Spend |
@@ -113,8 +115,10 @@ All views use window functions, CTEs, aggregations, and date functions — not a
 
 ### Model C — Product Recommendation Engine
 - Item-item collaborative filtering using cosine similarity
-- Purchase matrix: 4,761 customers × 500 top products
+- **Why cosine similarity:** Purchase matrix is sparse and volume-heavy — cosine captures preference direction regardless of order magnitude, unlike Euclidean distance
+- Purchase matrix: **4,761 customers × 500 top products**
 - Recommends products a customer hasn't bought based on similar buyers' behaviour
+- **Cold start handling:** New customers with no purchase history are handled by falling back to top revenue-generating products within the closest RFM segment
 
 ---
 
