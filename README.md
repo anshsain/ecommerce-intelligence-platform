@@ -80,7 +80,7 @@ Built 6 production-grade views in MSSQL:
 | `vw_product_performance` | Which products drive revenue vs volume? |
 | `vw_cohort_retention` | Of customers who bought in month X, how many returned? |
 
-All views use window functions, CTEs, aggregations, and date functions — not ad hoc queries.
+All views use window functions, CTEs, aggregations, and date functions.
 
 ---
 
