@@ -8,7 +8,7 @@
 ![Streamlit](https://img.shields.io/badge/App-Streamlit-ff4b4b?style=flat&logo=streamlit)
 ![Status](https://img.shields.io/badge/Status-Live-brightgreen?style=flat)
 
-An end-to-end data science project built on the **Online Retail II (UCI) dataset** — 824,293 real-world transactions from a UK-based wholesale retailer spanning December 2009 to December 2011.
+An end-to-end data science project built on the **Online Retail II (UCI) dataset** — 824,293 real-world transactions from a UK-based wholesale retailer spanning December 2009 to December 2011. Covers the full pipeline from raw data ingestion to a containerised, live-deployed web application.
 
 ### 🔗 [Live Demo →](https://ecommerce-intelligence-platform-ar3njx2ozilgoka4qdliqw.streamlit.app/)
 
@@ -93,13 +93,19 @@ All views use window functions, CTEs, aggregations, and date functions — not a
 - **Pipeline:** Logistic Regression → Random Forest → XGBoost
 - **Caught and fixed data leakage** — Recency directly encodes churn label, removed from features
 - **Result:** XGBoost AUC-ROC **0.863**, Churn Recall **0.81**
-- **SHAP explainability** — F_Score identified as 5x more predictive than monetary value
+- **Explainability:** SHAP beeswarm, bar, and waterfall plots on XGBoost
+  - F_Score: +2.45 (dominant signal)
+  - Frequency: +1.42
+  - CustomerLifespanDays: +1.32
+  - M_Score: +0.01 (almost no predictive power)
 
 | Model | AUC-ROC | Accuracy | Precision | Churn Recall |
 |---|---|---|---|---|
-| Logistic Regression | 0.786 | 72% | 0.713 | 74% |
-| Random Forest | 0.864 | 76% | 0.761 | 77% |
-| **XGBoost ✓** | **0.863** | **76%** | **0.748** | **81%** |
+| Logistic Regression | 0.789 | 70% | 0.692 | 74% |
+| Random Forest | 0.895 | 79% | 0.810 | 77% |
+| **XGBoost ✓** | **0.894** | **80%** | **0.810** | **78%** |
+
+- **Bug caught & fixed:** Initial R_Score used ASC ordering, incorrectly penalising recent buyers. Fixed to DESC so customers who purchased recently correctly score 5 (best). Model AUC improved from 0.863 → 0.894 after the fix — demonstrating the importance of domain-aware feature engineering
 
 ### Model B — RFM Customer Segmentation
 - K-Means clustering with elbow method → optimal **K=4**
@@ -219,6 +225,26 @@ ecommerce-intelligence-platform/
 └── .streamlit/
 
   └── config.toml           ← Dark theme configuration
+
+  ---
+
+## Key Results
+
+| Metric | Value |
+|---|---|
+| Total Revenue Analysed | £17.74M |
+| Churn Model AUC-ROC | 0.894 |
+| Churn Model Precision | 0.810 |
+| Churn Recall | 78% |
+| Silhouette Score (K=4) | 0.5909 |
+| Customer Segments | 4 (K-Means, elbow method) |
+| VIP Whale Avg Spend | £436,835 per customer |
+| Revenue Lost to Cancellations | £916,724 (UK alone) |
+| Products in Recommender | 500 |
+| Customers in Recommetter | 4,761 |
+| Products Sentiment Analysed | 5,331 |
+
+---
 
 ---
 
