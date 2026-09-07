@@ -447,7 +447,7 @@ elif page == "💡 Key Insights":
     st.markdown("---")
 
     # ── HuggingFace Sentiment Section
-    st.markdown('<div class="section-header"><b>🤗 Product Sentiment Analysis — HuggingFace RoBERTa</b></div>',
+    st.markdown('<div class="section-header"><b>Product Sentiment Analysis — HuggingFace RoBERTa</b></div>',
                 unsafe_allow_html=True)
     st.caption("Model: cardiffnlp/twitter-roberta-base-sentiment | 5,331 unique products analysed")
 
