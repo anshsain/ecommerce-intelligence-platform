@@ -305,7 +305,7 @@ elif page == "👥 Customer Segments":
 
     col1, col2, col3, col4 = st.columns(4)
     colors_seg = {
-        'VIP Whales':    '#f39c12',
+        'VIP':    '#f39c12',
         'Champions':     '#2ecc71',
         'Loyal Regulars':'#3498db',
         'Hibernating':   '#e74c3c'
@@ -506,12 +506,12 @@ elif page == "💡 Key Insights":
     st.markdown("---")
 
     # ── Key Business Insight Cards
-    st.markdown('<div class="section-header"><b>📌 Key Business Insights</b></div>',
+    st.markdown('<div class="section-header"><b> Key Business Insights</b></div>',
                 unsafe_allow_html=True)
 
     insight_data = [
-        ("🐋", "VIP Whales",
-         "4 customers account for disproportionate revenue averaging £436K each. "
+        ("🐋", "VIP",
+         "4 customers account for disproportionate revenue, averaging £436K each. "
          "Losing a single Whale = £436K revenue impact."),
         ("📉", "Revenue Leakage",
          "£916,724 lost to UK cancellations alone across 6,959 orders. "
