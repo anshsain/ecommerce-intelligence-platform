@@ -74,7 +74,7 @@ Built 6 production-grade views in MSSQL:
 | View | Business Question |
 |---|---|
 | `vw_monthly_revenue` | Which months drove the most revenue? |
-| `vw_customer_ltv` | Who are our highest value customers? |
+| `vw_customer_ltv` | Who are our highest-value customers? |
 | `vw_rfm_scores` | How recent, frequent, and valuable is each customer? |
 | `vw_revenue_leakage` | How much revenue is lost to cancellations by country? |
 | `vw_product_performance` | Which products drive revenue vs volume? |
@@ -89,9 +89,9 @@ All views use window functions, CTEs, aggregations, and date functions.
 ### Model A — Customer Churn Prediction
 - **Definition:** Customer inactive for 90+ days = churned
 - **Features:** Frequency, Monetary, F_Score, M_Score, TotalOrders, TotalItemsBought, AvgOrderValue, CustomerLifespanDays
-- **Class balance:** Dataset was naturally balanced (50.9% churned vs 49.1% not churned) — no SMOTE required. Pipeline includes SMOTE-ready structure for imbalanced datasets
+- **Class balance:** Dataset was naturally balanced (50.9% churned vs 49.1% not churned) — no SMOTE required. Pipeline includes a SMOTE-ready structure for imbalanced datasets
 - **Pipeline:** Logistic Regression → Random Forest → XGBoost
-- **Caught and fixed data leakage** — Recency directly encodes churn label, removed from features
+- **Caught and fixed data leakage** — Recency directly encodes the churn label; removed from features
 - **Result:** XGBoost AUC-ROC **0.863**, Churn Recall **0.81**
 - **Explainability:** SHAP beeswarm, bar, and waterfall plots on XGBoost
   - F_Score: +2.45 (dominant signal)
@@ -114,7 +114,7 @@ All views use window functions, CTEs, aggregations, and date functions.
 
 | Segment | Customers | Avg Recency | Avg Spend |
 |---|---|---|---|
-| VIP Whales | 4 | 3 days | £436,835 |
+| VIP | 4 | 3 days | £436,835 |
 | Champions | 38 | 24 days | £79,380 |
 | Loyal Regulars | 3,861 | 67 days | £2,976 |
 | Hibernating | 2,012 | 462 days | £768 |
@@ -128,11 +128,11 @@ All views use window functions, CTEs, aggregations, and date functions.
 
 ---
 
-## 💬 Layer 4 — NLP with HuggingFace Transformers
+## Layer 4 — NLP with HuggingFace Transformers
 
 - Replaced rule-based TextBlob with **fine-tuned RoBERTa** (`cardiffnlp/twitter-roberta-base-sentiment`)
 - Ran inference on **5,331 unique product descriptions** in batches
-- Model correctly detects informal language — "W/SUCK", "I AM SO POORLY", "YOU'RE CONFUSING ME" all flagged negative with 90%+ confidence — something TextBlob missed entirely
+- Model correctly detects informal language — "W/SUCK", "I AM SO POORLY", "YOU'RE CONFUSING ME" all flagged as negative with 90%+ confidence — something TextBlob missed entirely
 - **Cancellation keyword analysis** — "Retrospot" (1,400), "Cake" (1,227), "Glass" (1,074) dominate cancelled orders
 
 | Sentiment | Products | Example |
@@ -145,11 +145,11 @@ All views use window functions, CTEs, aggregations, and date functions.
 
 ## 🐳 Docker
 
-Application is fully containerised for platform-independent deployment:
+The application is fully containerised for platform-independent deployment:
 
 ```bash
 # Build
-docker build -t ecommerce-intelligence.
+docker build -t ecommerce-intelligence
 
 # Run
 docker run -p 8501:8501 ecommerce-intelligence
@@ -174,7 +174,7 @@ Then open `http://localhost:8501` in your browser.
 ---
 
 ## Key Business Insights
-1. **4 VIP Whale accounts** average £436K spend each — losing one = £436K revenue impact
+1. **4 VIP accounts** average £436K spend each — losing one = £436K revenue impact
 2. **November seasonal spike** — £1.17M in Nov 2010, nearly double any other month. Q4 drives ~35% of annual revenue
 3. **£916K revenue leakage** from UK cancellations across 6,959 orders
 4. **2,012 hibernating customers** inactive 462 days on average — ~£1.5M in recoverable dormant revenue
@@ -197,7 +197,7 @@ Then open `http://localhost:8501` in your browser.
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 ecommerce-intelligence-platform/
 
 │
